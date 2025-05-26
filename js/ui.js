@@ -6,6 +6,12 @@ export const ui = {
     init() {
         this.attachEventListeners();
         this.updateUI();
+        this.handleUrlRouting();
+        
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            this.handleUrlRouting();
+        });
     },
 
     attachEventListeners() {
@@ -266,6 +272,10 @@ export const ui = {
         
         document.getElementById(tabId).classList.add('active');
         
+        // Update URL without triggering page reload
+        const newUrl = tabId === 'events' ? '/home' : `/${tabId}`;
+        window.history.pushState({}, '', newUrl);
+        
         // Update the appropriate table/view when switching tabs
         switch(tabId) {
             case 'events':
@@ -284,6 +294,26 @@ export const ui = {
                 this.updateProfileInfo();
                 break;
         }
+    },
+
+    // Handle URL routing
+    handleUrlRouting() {
+        const path = window.location.pathname;
+        let tabId = 'events';
+
+        if (path === '/home') {
+            tabId = 'events';
+        } else if (path === '/myRegistrations') {
+            tabId = 'myRegistrations';
+        } else if (path === '/profile') {
+            tabId = 'profile';
+        } else if (path === '/manageEvents') {
+            tabId = 'manageEvents';
+        } else if (path === '/participants') {
+            tabId = 'participants';
+        }
+
+        this.showTab(tabId);
     },
 
     // Event Registration
