@@ -272,11 +272,11 @@ export const ui = {
         
         document.getElementById(tabId).classList.add('active');
         
-        // Update URL without triggering page reload
+        // Update URL
         const newUrl = tabId === 'events' ? '/home' : `/${tabId}`;
         window.history.pushState({}, '', newUrl);
         
-        // Update the appropriate table/view when switching tabs
+        // Update the appropriate table/view | when switching tabs
         switch(tabId) {
             case 'events':
                 this.updateEventsDisplay();
