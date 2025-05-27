@@ -1,4 +1,4 @@
-// Authentication Module
+// Auth
 export const auth = {
     currentUser: null,
     users: [],
@@ -22,7 +22,7 @@ export const auth = {
             throw new Error('Email already in use.');
         }
 
-        // Validate role
+        // Validate 
         if (role !== 'student' && role !== 'faculty') {
             throw new Error('Invalid role selected.');
         }
@@ -71,16 +71,16 @@ export const auth = {
             this.users = JSON.parse(savedUsers);
         }
 
-        // Load current user session
+        // Load current user 
         const savedCurrentUser = localStorage.getItem('uniEvents_currentUser');
         if (savedCurrentUser) {
             const currentUserData = JSON.parse(savedCurrentUser);
-            // Verify the user still exists in users array
+            // Verify the user / user array
             const user = this.users.find(u => u.id === currentUserData.id && u.email === currentUserData.email);
             if (user) {
                 this.currentUser = { ...user };
             } else {
-                // If user no longer exists, clear the session
+                // Clear the session
                 localStorage.removeItem('uniEvents_currentUser');
                 this.currentUser = null;
             }
