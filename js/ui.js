@@ -1,4 +1,4 @@
-// UI Module
+// UI 
 import { auth } from './auth.js';
 import { events } from './events.js';
 
@@ -8,14 +8,14 @@ export const ui = {
         this.updateUI();
         this.handleUrlRouting();
         
-        // Handle browser back/forward buttons
+        // back/forward buttons
         window.addEventListener('popstate', () => {
             this.handleUrlRouting();
         });
     },
 
     attachEventListeners() {
-        // Auth Modal
+        // Auth 
         document.querySelectorAll('[onclick^="openAuthModal"]').forEach(el => {
             el.onclick = (e) => {
                 e.preventDefault();
@@ -44,7 +44,7 @@ export const ui = {
             };
         });
 
-        // Login/Register Actions
+        // Login/Register
         document.querySelectorAll('[onclick^="login"]').forEach(el => {
             el.onclick = (e) => {
                 e.preventDefault();
