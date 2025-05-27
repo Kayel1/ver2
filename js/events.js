@@ -1,4 +1,4 @@
-// Events Module
+// Events
 export const events = {
     eventsList: [],
     registrations: [],
