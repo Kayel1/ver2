@@ -1,24 +1,23 @@
-// Main Application Module
 import { auth } from './auth.js';
 import { events } from './events.js';
 import { ui } from './ui.js';
 
-// Make modules globally available
+// Autoload/global
 window.auth = auth;
 window.events = events;
 window.ui = ui;
 
-// Initialize application
+// Init app
 document.addEventListener('DOMContentLoaded', () => {
     // Load saved data
     auth.loadFromStorage();
     events.loadFromStorage();
     auth.initializeDefaultAccounts();
 
-    // Initialize UI
+    // Init UI
     ui.init();
 
-    // Set up auto-save
+    // auto-save
     window.addEventListener('beforeunload', () => {
         auth.saveToStorage();
         events.saveToStorage();
